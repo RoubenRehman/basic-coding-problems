@@ -1,7 +1,7 @@
 from copy import copy
 from ListHelpers.ListHelpers import ListNode, print_list, create_random_ordered_list, copy_list
 
-def invert_list(head: ListNode) -> ListNode:
+def reverse_list(head: ListNode) -> ListNode:
     head = copy_list(head)
 
     if head is None:
@@ -28,7 +28,7 @@ def main():
 
     print_list(head)
     print("-------")
-    head = invert_list(head)
+    head = reverse_list(head)
     print_list(head)
 
 

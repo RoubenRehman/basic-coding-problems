@@ -2,7 +2,7 @@ from typing import List
 import numpy as np
 
 class ListNode:
-    def __init__(self, val: int, next: any) -> None:
+    def __init__(self, val: int, next: object) -> None:
         """
         Creates a ListNode which is a node of a singly linked list. 
 
@@ -11,6 +11,11 @@ class ListNode:
         """ 
         self.val = val
         self.next = next
+
+    def __eq__(self, __o: object) -> bool:
+        l1 = _list_to_builtin(self)
+        l2 = _list_to_builtin(__o)
+        return l1 == l2
 
 def copy_list(head: ListNode) -> ListNode:
     """
@@ -33,6 +38,26 @@ def copy_list(head: ListNode) -> ListNode:
         head = head.next
 
     return res
+
+def _list_to_builtin(head: ListNode) -> list:
+    res = []
+    while head:
+        res.append(head.val)
+        head = head.next
+
+    return res
+
+def builtin_to_list(l: list) -> ListNode:
+    if not l:
+        return None
+
+    head = temp = ListNode(l[0], None)
+
+    for idx in range(1, len(l)):
+        temp.next = ListNode(l[idx], None)
+        temp = temp.next
+
+    return head
 
 def print_list(head: ListNode):
     """
